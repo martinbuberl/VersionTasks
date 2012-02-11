@@ -58,7 +58,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\Repositories\Git.zip" />
+    <None Include="Data\Repositories\Git.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Templates\Changeset.tmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
