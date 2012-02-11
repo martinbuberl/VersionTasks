@@ -3,13 +3,13 @@
 namespace MSBuild.Version.Tasks.Exceptions
 {
     [Serializable]
-    public class HgException : Exception
+    public class ExecuteCommandException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the HgException class with a specified error message.
+        /// Initializes a new instance of the ExecuteCommandException class with a specified error message.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
-        public HgException(string message)
+        public ExecuteCommandException(string message)
             : base(message)
         {
         }
