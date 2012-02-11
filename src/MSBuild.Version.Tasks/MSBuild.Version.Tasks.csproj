@@ -38,8 +38,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\GitException.cs" />
-    <Compile Include="Exceptions\HgException.cs" />
+    <Compile Include="Exceptions\ExecuteCommandException.cs" />
     <Compile Include="Exceptions\TfsException.cs" />
     <Compile Include="GitVersionFile.cs" />
     <Compile Include="HgVersionFile.cs" />
@@ -54,6 +53,7 @@
     <Compile Include="Tfs\Proxies\WorkspaceVersionSpec.cs" />
     <Compile Include="Tfs\Proxies\Workstation.cs" />
     <Compile Include="TfsVersionFile.cs" />
+    <Compile Include="VersionInfoBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
