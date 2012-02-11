@@ -96,10 +96,10 @@ namespace MSBuild.Version.Tasks
                 }
                 catch (Win32Exception ex)
                 {
-                    if (ex.NativeErrorCode == 2) // file not found
+                    if (ex.NativeErrorCode == 2) // the system cannot find the file specified
                     {
                         throw new ExecuteCommandException(
-                            String.Format("Command \"{0}\" could not be found. Please ensure that the source control is installed.", fileName)
+                            String.Format("Command \"{0}\" could not be found. Please ensure that the source control is installed and part of the system's path environment variable.", fileName)
                             );
                     }
 
