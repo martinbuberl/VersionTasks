@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.IO;
+﻿using System.Collections;
 using System.Net;
 using System.Reflection;
 using MSBuild.Version.Tasks.Exceptions;
 using MSBuild.Version.Tasks.Tfs.Proxies;
-using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
 
 namespace MSBuild.Version.Tasks
 {
@@ -19,53 +15,14 @@ namespace MSBuild.Version.Tasks
     /// '1.3.0.511' (11/30/2010).
     /// </remarks>
     /// <see href="http://msbuildtasks.tigris.org/"/>
-    public class TfsVersionFile : Task
+    public class TfsVersionFile : VersionInfoBase
     {
-        /// <example>..Common\CommonAssemblyInfo.cs.tmp</example>
-        [Required]
-        public string TemplateFile { get; set; }
-        /// <example>..Common\CommonAssemblyInfo.cs</example>
-        [Required]
-        public string DestinationFile { get; set; }
-        /// <example>..\..\</example>
-        [Required]
-        public string WorkingDirectory { get; set; }
-
-        public override bool Execute()
+        internal override void SetVersionInfo()
         {
             try
             {
-                // set TFS version info
-                SetVersionInfo();
-
-                // read content of the template file
-                string content = File.ReadAllText(TemplateFile);
-
-                // replace tokens in the template file content with version info
-                content = content.Replace("$CHANGESET$", Changeset.ToString());
-
-                // write the destination file, only if it needs to be updated
-                if (!File.Exists(DestinationFile) || File.ReadAllText(DestinationFile) != content)
-                    File.WriteAllText(DestinationFile, content);
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                // logging as error will still cause the build to fail
-                Log.LogError(ex.Message);
-
-                return false;
-            }
-        }
-
-        private int Changeset { get; set; }
-
-        private void SetVersionInfo()
-        {
-            try
-            {
-                Changeset = GetChangeset(WorkingDirectory);
+                // TODO: Eplain why TFS changeset is a revision
+                Revision = GetChangeset(WorkingDirectory);
             }
             catch (TfsException ex)
             {
