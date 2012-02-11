@@ -50,20 +50,22 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GitVersionFileTest.cs" />
     <Compile Include="HgVersionFileTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\Tools.BuildTasks\Properties\CommonAssemblyInfo.cs">
+    <Compile Include="..\MSBuild.Version.Tasks\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\Templates\HgChangeset.tmp">
+    <None Include="Data\Repositories\Git.zip" />
+    <None Include="Data\Templates\Changeset.tmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Templates\HgDirty.tmp">
+    <None Include="Data\Templates\Dirty.tmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Templates\HgRevision.tmp">
+    <None Include="Data\Templates\Revision.tmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Repositories\Hg.zip">
