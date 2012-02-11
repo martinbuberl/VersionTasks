@@ -28,46 +28,44 @@ namespace MSBuild.Version.Tasks.Tests
             Directory.Delete(TempDirectory, true);
         }
 
-// ReSharper disable InconsistentNaming
         [Test]
         public void Execute_WriteRevision_ShouldWriteRevision()
         {
-            Execute("HgRevision.tmp", "Hg1Revision.txt", "hg1");
+            Execute("Revision.tmp", "Hg1Revision.txt", "hg1");
             Assert.AreEqual(ReadFirstLine("Hg1Revision.txt"), "2");
 
-            Execute("HgRevision.tmp", "Hg2Revision.txt", "hg2");
+            Execute("Revision.tmp", "Hg2Revision.txt", "hg2");
             Assert.AreEqual(ReadFirstLine("Hg2Revision.txt"), "4");
 
-            Execute("HgRevision.tmp", "Hg3Revision.txt", "hg3");
+            Execute("Revision.tmp", "Hg3Revision.txt", "hg3");
             Assert.AreEqual(ReadFirstLine("Hg3Revision.txt"), "2");
         }
 
         [Test]
         public void Execute_WriteChangeset_ShouldWriteChangeset()
         {
-            Execute("HgChangeset.tmp", "Hg1Changeset.txt", "hg1");
+            Execute("Changeset.tmp", "Hg1Changeset.txt", "hg1");
             Assert.AreEqual(ReadFirstLine("Hg1Changeset.txt"), "1024d08c6b37");
 
-            Execute("HgChangeset.tmp", "Hg2Changeset.txt", "hg2");
+            Execute("Changeset.tmp", "Hg2Changeset.txt", "hg2");
             Assert.AreEqual(ReadFirstLine("Hg2Changeset.txt"), "bf82f571c792");
 
-            Execute("HgChangeset.tmp", "Hg3Changeset.txt", "hg3");
+            Execute("Changeset.tmp", "Hg3Changeset.txt", "hg3");
             Assert.AreEqual(ReadFirstLine("Hg3Changeset.txt"), "80de7a096ed2");
         }
 
         [Test]
         public void Execute_WriteDirty_ShouldWriteDirty()
         {
-            Execute("HgDirty.tmp", "Hg1Dirty.txt", "hg1");
+            Execute("Dirty.tmp", "Hg1Dirty.txt", "hg1");
             Assert.AreEqual(ReadFirstLine("Hg1Dirty.txt"), "0");
 
-            Execute("HgDirty.tmp", "Hg2Dirty.txt", "hg2");
+            Execute("Dirty.tmp", "Hg2Dirty.txt", "hg2");
             Assert.AreEqual(ReadFirstLine("Hg2Dirty.txt"), "1");
 
-            Execute("HgDirty.tmp", "Hg3Dirty.txt", "hg3");
+            Execute("Dirty.tmp", "Hg3Dirty.txt", "hg3");
             Assert.AreEqual(ReadFirstLine("Hg3Dirty.txt"), "1");
         }
-// ReSharper restore InconsistentNaming
 
         private static readonly string TemplatesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Templates");
         private static readonly string RepositoriesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Repositories");
