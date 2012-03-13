@@ -12,20 +12,15 @@ namespace MSBuild.Version.Tasks
         internal override void SetVersionInfo()
         {
             try
-            {   
-                // InitRevision
-                var bla = ExecuteCommand("git.exe", "rev-list");
-                // IsWorkingCopyDirty
-                var foo = ExecuteCommand("git.exe", "diff-index --quiet HEAD");
-                // GetBranch
-                var branch = ExecuteCommand("git.exe", "describe --all")[0];
-                // GetTags
-                var tags = ExecuteCommand("git.exe", "describe")[0];
+            {
+                Changeset = ExecuteCommand("git.exe", "log --pretty=format:'%H' -n 1")[0].Substring(1, 40); ;
+                Dirty = ExecuteCommand("git.exe", "diff-index HEAD").Count > 0 ? 1 : 0;
             }
             catch (ExecuteCommandException ex)
             {
-                
-                throw;
+                // TeamCity does not check out the directory with a .git folder, so we will get the error 'Not a git repository (or any of the
+                // parent directories)'. We want to swallow the exception so the tokens will be still initialized with their default values.
+                Log.LogWarningFromException(ex);
             }
         }
     }
