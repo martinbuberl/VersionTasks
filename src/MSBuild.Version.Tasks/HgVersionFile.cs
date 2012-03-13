@@ -1,5 +1,4 @@
-﻿using System;
-using MSBuild.Version.Tasks.Exceptions;
+﻿using MSBuild.Version.Tasks.Exceptions;
 
 namespace MSBuild.Version.Tasks
 {
@@ -14,20 +13,10 @@ namespace MSBuild.Version.Tasks
         {
             try
             {
-                string revision = ExecuteCommand("hg.exe", "identify -n")[0];
+                string changeset = ExecuteCommand("hg.exe", "identify -i")[0]; // -i (global revision id); -n (local revision number)
 
-                if (revision.Contains("+"))
-                {
-                    Revision = int.Parse(revision.Substring(0, revision.IndexOf("+", StringComparison.Ordinal)));
-                    Dirty = 1;
-                }
-                else
-                {
-                    Revision = int.Parse(revision);
-                    Dirty = 0;
-                }
-
-                Changeset = ExecuteCommand("hg.exe", "identify -i")[0].Substring(0, 12);
+                Dirty = changeset.Contains("+") ? 1 : 0;
+                Changeset = changeset.Substring(0, 12);
             }
             catch (ExecuteCommandException ex)
             {
