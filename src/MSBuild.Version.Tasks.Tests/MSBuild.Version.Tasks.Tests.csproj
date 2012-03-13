@@ -67,9 +67,6 @@
     <None Include="Data\Templates\Dirty.tmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Templates\Revision.tmp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Data\Repositories\Hg.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
