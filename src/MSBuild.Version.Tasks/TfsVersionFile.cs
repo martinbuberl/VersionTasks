@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Globalization;
 using System.Net;
 using System.Reflection;
 using MSBuild.Version.Tasks.Exceptions;
@@ -21,8 +22,7 @@ namespace MSBuild.Version.Tasks
         {
             try
             {
-                // TODO: Eplain why TFS changeset is a revision
-                Revision = GetChangeset(WorkingDirectory);
+                Changeset = GetChangeset(WorkingDirectory).ToString(CultureInfo.InvariantCulture);
             }
             catch (TfsException ex)
             {
