@@ -29,42 +29,29 @@ namespace MSBuild.Version.Tasks.Tests
         }
 
         [Test]
-        public void Execute_WriteRevision_ShouldWriteRevision()
-        {
-            Execute("Revision.tmp", "Hg1Revision.txt", "hg1");
-            Assert.AreEqual(ReadFirstLine("Hg1Revision.txt"), "2");
-
-            Execute("Revision.tmp", "Hg2Revision.txt", "hg2");
-            Assert.AreEqual(ReadFirstLine("Hg2Revision.txt"), "4");
-
-            Execute("Revision.tmp", "Hg3Revision.txt", "hg3");
-            Assert.AreEqual(ReadFirstLine("Hg3Revision.txt"), "2");
-        }
-
-        [Test]
         public void Execute_WriteChangeset_ShouldWriteChangeset()
         {
             Execute("Changeset.tmp", "Hg1Changeset.txt", "hg1");
-            Assert.AreEqual(ReadFirstLine("Hg1Changeset.txt"), "1024d08c6b37");
+            Assert.AreEqual("1024d08c6b37", ReadFirstLine("Hg1Changeset.txt"));
 
             Execute("Changeset.tmp", "Hg2Changeset.txt", "hg2");
-            Assert.AreEqual(ReadFirstLine("Hg2Changeset.txt"), "bf82f571c792");
+            Assert.AreEqual("bf82f571c792", ReadFirstLine("Hg2Changeset.txt"));
 
             Execute("Changeset.tmp", "Hg3Changeset.txt", "hg3");
-            Assert.AreEqual(ReadFirstLine("Hg3Changeset.txt"), "80de7a096ed2");
+            Assert.AreEqual("80de7a096ed2", ReadFirstLine("Hg3Changeset.txt"));
         }
 
         [Test]
         public void Execute_WriteDirty_ShouldWriteDirty()
         {
             Execute("Dirty.tmp", "Hg1Dirty.txt", "hg1");
-            Assert.AreEqual(ReadFirstLine("Hg1Dirty.txt"), "0");
+            Assert.AreEqual("0", ReadFirstLine("Hg1Dirty.txt"));
 
             Execute("Dirty.tmp", "Hg2Dirty.txt", "hg2");
-            Assert.AreEqual(ReadFirstLine("Hg2Dirty.txt"), "1");
+            Assert.AreEqual("1", ReadFirstLine("Hg2Dirty.txt"));
 
             Execute("Dirty.tmp", "Hg3Dirty.txt", "hg3");
-            Assert.AreEqual(ReadFirstLine("Hg3Dirty.txt"), "1");
+            Assert.AreEqual("1", ReadFirstLine("Hg3Dirty.txt"));
         }
 
         private static readonly string TemplatesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Templates");
