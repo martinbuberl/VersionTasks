@@ -24,14 +24,12 @@ namespace MSBuild.Version.Tasks
         public string WorkingDirectory { get; set; }
 
         internal string Changeset { get; set; }
-        internal int Revision { get; set; }
         internal int Dirty { get; set; }
 
         public override bool Execute()
         {
             try
             {
-                // set Mercurial version info
                 SetVersionInfo();
 
                 // read content of the template file
@@ -39,7 +37,6 @@ namespace MSBuild.Version.Tasks
 
                 // replace tokens in the template file content with version info
                 content = content.Replace("$CHANGESET$", Changeset);
-                content = content.Replace("$REVISION$", Revision.ToString(CultureInfo.InvariantCulture));
                 content = content.Replace("$DIRTY$", Dirty.ToString(CultureInfo.InvariantCulture));
 
                 // write the destination file, only if it needs to be updated
