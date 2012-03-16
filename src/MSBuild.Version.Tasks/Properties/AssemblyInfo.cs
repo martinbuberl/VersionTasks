@@ -55,4 +55,4 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("3fb66e12-8fe0-42f7-bc78-8a3093328a4f")]
 
-[assembly: InternalsVisibleTo("Andromeda.Tools.BuildTasks.Tests")]
+[assembly: InternalsVisibleTo("MSBuild.Version.Tasks.Tests")]
