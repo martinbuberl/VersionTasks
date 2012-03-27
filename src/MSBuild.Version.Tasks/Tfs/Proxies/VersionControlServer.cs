@@ -30,6 +30,16 @@ namespace MSBuild.Version.Tasks.Tfs.Proxies
             return versionControlServer;
         }
 
+        public object GetPendingSets(RecursionType recursion)
+        {
+            MethodInfo getPendingSetsMethod = _type.GetMethod("GetPendingSets", new[] { typeof(string[]), recursion.Type });
+
+            string[] items = new string[1];
+            items[0] = @"$/";
+
+            return getPendingSetsMethod.Invoke(_instance, new[] { items, recursion.Instance });
+        }
+
         public Workspace GetWorkspace(string localPath)
         {
             Type itemNotMappedException = _assembly.GetType("Microsoft.TeamFoundation.VersionControl.Client.ItemNotMappedException");
