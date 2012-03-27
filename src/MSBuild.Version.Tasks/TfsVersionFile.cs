@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Globalization;
+﻿using System;
+using System.Collections;
 using System.Net;
 using System.Reflection;
 using MSBuild.Version.Tasks.Exceptions;
@@ -18,11 +18,22 @@ namespace MSBuild.Version.Tasks
     /// <see href="http://msbuildtasks.tigris.org/"/>
     public class TfsVersionFile : VersionInfoBase
     {
+        private static readonly Assembly ClientAssembly = Assembly.Load("Microsoft.TeamFoundation.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
+        private static readonly Assembly VersionAssembly = Assembly.Load("Microsoft.TeamFoundation.VersionControl.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
+
         internal override void SetVersionInfo()
         {
             try
             {
-                Changeset = GetChangeset(WorkingDirectory).ToString(CultureInfo.InvariantCulture);
+                VersionControlServer versionControlServer = new VersionControlServer(
+                    ClientAssembly,
+                    VersionAssembly,
+                    new Workstation(VersionAssembly).GetLocalWorkspaceInfo(WorkingDirectory).ServerUri.ToString(),
+                    CredentialCache.DefaultNetworkCredentials
+                    );
+
+                Changeset = GetChangeset(versionControlServer, WorkingDirectory).ToString();
+                Dirty = GetDirty(versionControlServer);
             }
             catch (TfsException ex)
             {
@@ -33,42 +44,46 @@ namespace MSBuild.Version.Tasks
             }
         }
 
-        private static int GetChangeset(string workingDirectory)
+        private static int GetChangeset(VersionControlServer versionControlServer, string workingDirectory)
         {
-            Assembly clientAssembly = Assembly.Load("Microsoft.TeamFoundation.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
-            Assembly versionAssembly = Assembly.Load("Microsoft.TeamFoundation.VersionControl.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
-
             int changesetId = 0;
 
-            VersionControlServer sourceControl = new VersionControlServer(
-                clientAssembly,
-                versionAssembly,
-                new Workstation(versionAssembly).GetLocalWorkspaceInfo(workingDirectory).ServerUri.ToString(),
-                CredentialCache.DefaultNetworkCredentials
-                );
-
             WorkspaceVersionSpec workspaceVersionSpec = new WorkspaceVersionSpec(
-                versionAssembly,
-                sourceControl.GetWorkspace(workingDirectory)
+                VersionAssembly,
+                versionControlServer.GetWorkspace(workingDirectory)
                 );
 
-            IEnumerable history = sourceControl.QueryHistory(
+            IEnumerable history = versionControlServer.QueryHistory(
                 workingDirectory,
-                new VersionSpec(versionAssembly).Latest,
-                new RecursionType(versionAssembly).Full,
+                new VersionSpec(VersionAssembly).Latest,
+                new RecursionType(VersionAssembly).Full,
                 workspaceVersionSpec
                 );
 
             IEnumerator historyEnumerator = history.GetEnumerator();
-            Changeset changeset = new Changeset(versionAssembly);
+            Changeset changeset = new Changeset(VersionAssembly);
 
             if (historyEnumerator.MoveNext())
-                changeset = new Changeset(versionAssembly, historyEnumerator.Current);
+                changeset = new Changeset(VersionAssembly, historyEnumerator.Current);
 
             if (changeset.Instance != null)
                 changesetId = changeset.ChangesetId;
 
             return changesetId;
+        }
+
+        private static int GetDirty(VersionControlServer versionControlServer)
+        {
+            dynamic pendingSets = versionControlServer.GetPendingSets(new RecursionType(VersionAssembly).Full);
+
+            foreach (var pendingSet in pendingSets)
+            {
+                // compare pending sets with local machine name
+                if (String.Equals(pendingSet.Computer, Environment.MachineName, StringComparison.InvariantCultureIgnoreCase))
+                    return 1;
+            }
+
+            return 0;
         }
     }
 }
