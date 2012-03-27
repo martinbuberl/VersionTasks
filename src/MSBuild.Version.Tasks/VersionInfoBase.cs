@@ -37,7 +37,7 @@ namespace MSBuild.Version.Tasks
 
                 // replace tokens in the template file content with version info
                 content = content.Replace("$CHANGESET$", Changeset);
-                content = content.Replace("$DIRTY$", Dirty.ToString(CultureInfo.InvariantCulture));
+                content = content.Replace("$DIRTY$", Dirty.ToString());
 
                 // write the destination file, only if it needs to be updated
                 if (!File.Exists(DestinationFile) || File.ReadAllText(DestinationFile) != content)
