@@ -1,9 +1,9 @@
 using System.Reflection;
 
-[assembly: AssemblyProduct("Andromeda.Tools.BuildTask")]
+[assembly: AssemblyProduct("MSBuild.Version.Tasks")]
 
 [assembly: AssemblyCompany("Martin Buberl")]
-[assembly: AssemblyCopyright("Copyright (c) 2010-2011, Martin Buberl")]
+[assembly: AssemblyCopyright("Copyright (c) 2010-2012, Martin Buberl")]
 [assembly: AssemblyTrademark("")]
 
 #if DEBUG
@@ -12,5 +12,5 @@ using System.Reflection;
 [assembly: AssemblyConfiguration("Release")]
 #endif
 
-[assembly: AssemblyVersion("0.5.0.0")]
-[assembly: AssemblyFileVersion("0.5.0.0")]
+[assembly: AssemblyVersion("0.6.0.0")]
+[assembly: AssemblyFileVersion("0.6.0.0")]

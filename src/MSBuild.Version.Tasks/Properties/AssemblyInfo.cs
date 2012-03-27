@@ -42,9 +42,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 #if DEBUG
-[assembly: AssemblyTitle("Andromeda.Tools.BuildTasks (DEBUG)")]
+[assembly: AssemblyTitle("MSBuild.Version.Tasks (DEBUG)")]
 #else // RELEASE
-[assembly: AssemblyTitle("Andromeda.Tools.BuildTasks")]
+[assembly: AssemblyTitle("MSBuild.Version.Tasks")]
 #endif
 
 [assembly: AssemblyDescription("")]

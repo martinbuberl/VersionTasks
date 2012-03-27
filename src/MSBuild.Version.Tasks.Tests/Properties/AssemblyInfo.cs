@@ -3,9 +3,9 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 #if DEBUG
-[assembly: AssemblyTitle("Andromeda.Tools.BuildTasks.Tests (DEBUG)")]
+[assembly: AssemblyTitle("MSBuild.Version.Tasks.Tests (DEBUG)")]
 #else // RELEASE
-[assembly: AssemblyTitle("Andromeda.Tools.BuildTasks.Tests")]
+[assembly: AssemblyTitle("MSBuild.Version.Tasks.Tests")]
 #endif
 
 [assembly: AssemblyDescription("")]
