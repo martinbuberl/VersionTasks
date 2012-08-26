@@ -3,7 +3,7 @@ using System.IO;
 using Ionic.Zip;
 using NUnit.Framework;
 
-namespace MSBuild.Version.Tasks.Tests
+namespace VersionTasks.Tests
 {
     [TestFixture]
     public class GitVersionFileTest

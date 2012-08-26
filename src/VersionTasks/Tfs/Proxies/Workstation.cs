@@ -1,8 +1,8 @@
 using System;
 using System.Reflection;
-using MSBuild.Version.Tasks.Exceptions;
+using VersionTasks.Exceptions;
 
-namespace MSBuild.Version.Tasks.Tfs.Proxies
+namespace VersionTasks.Tfs.Proxies
 {
     internal class Workstation
     {

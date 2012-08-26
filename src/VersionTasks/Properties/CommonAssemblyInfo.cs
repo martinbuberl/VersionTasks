@@ -1,6 +1,6 @@
 using System.Reflection;
 
-[assembly: AssemblyProduct("MSBuild.Version.Tasks")]
+[assembly: AssemblyProduct("VersionTasks")]
 
 [assembly: AssemblyCompany("Martin Buberl")]
 [assembly: AssemblyCopyright("Copyright (c) 2010-2012, Martin Buberl")]

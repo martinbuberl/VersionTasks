@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MSBuild.Version.Tasks.Exceptions
+namespace VersionTasks.Exceptions
 {
     [Serializable]
     public class ExecuteCommandException : Exception

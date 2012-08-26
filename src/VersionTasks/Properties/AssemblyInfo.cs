@@ -42,9 +42,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 #if DEBUG
-[assembly: AssemblyTitle("MSBuild.Version.Tasks (DEBUG)")]
+[assembly: AssemblyTitle("VersionTasks (DEBUG)")]
 #else // RELEASE
-[assembly: AssemblyTitle("MSBuild.Version.Tasks")]
+[assembly: AssemblyTitle("VersionTasks")]
 #endif
 
 [assembly: AssemblyDescription("")]
@@ -55,4 +55,4 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("3fb66e12-8fe0-42f7-bc78-8a3093328a4f")]
 
-[assembly: InternalsVisibleTo("MSBuild.Version.Tasks.Tests")]
+[assembly: InternalsVisibleTo("VersionTasks.Tests")]

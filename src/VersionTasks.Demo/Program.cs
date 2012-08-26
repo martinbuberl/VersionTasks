@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MSBuild.Version.Tasks.Demo
+namespace VersionTasks.Demo
 {
     class Program
     {

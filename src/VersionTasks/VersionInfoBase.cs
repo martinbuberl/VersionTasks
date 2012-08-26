@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Build.Framework;
+using Microsoft.Build.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -6,11 +8,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using MSBuild.Version.Tasks.Exceptions;
-using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
+using VersionTasks.Exceptions;
 
-namespace MSBuild.Version.Tasks
+namespace VersionTasks
 {
     public abstract class VersionInfoBase : Task
     {

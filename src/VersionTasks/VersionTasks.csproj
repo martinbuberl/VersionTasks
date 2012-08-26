@@ -8,8 +8,8 @@
     <ProjectGuid>{2A4A7961-5597-42E5-91EA-DB5093A3E301}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSBuild.Version.Tasks</RootNamespace>
-    <AssemblyName>MSBuild.Version.Tasks</AssemblyName>
+    <RootNamespace>VersionTasks</RootNamespace>
+    <AssemblyName>VersionTasks</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

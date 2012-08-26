@@ -1,10 +1,10 @@
 using System;
-using System.Reflection;
-using System.Net;
 using System.Collections;
-using MSBuild.Version.Tasks.Exceptions;
+using System.Net;
+using System.Reflection;
+using VersionTasks.Exceptions;
 
-namespace MSBuild.Version.Tasks.Tfs.Proxies
+namespace VersionTasks.Tfs.Proxies
 {
     internal class VersionControlServer
     {

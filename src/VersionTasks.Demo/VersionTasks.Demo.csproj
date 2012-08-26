@@ -7,8 +7,8 @@
     <ProjectGuid>{81B41214-C3B2-467B-8326-B7FBB5812B8E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSBuild.Version.Tasks.Demo</RootNamespace>
-    <AssemblyName>MSBuild.Version.Tasks.Demo</AssemblyName>
+    <RootNamespace>VersionTasks.Demo</RootNamespace>
+    <AssemblyName>VersionTasks.Demo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

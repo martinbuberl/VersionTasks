@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Net;
 using System.Reflection;
-using MSBuild.Version.Tasks.Exceptions;
-using MSBuild.Version.Tasks.Tfs.Proxies;
+using VersionTasks.Exceptions;
+using VersionTasks.Tfs.Proxies;
 
-namespace MSBuild.Version.Tasks
+namespace VersionTasks
 {
     /// <summary>
     /// This is a modified fork of the TfsVersion task of the MSBuild.Community.Tasks project.

@@ -8,8 +8,8 @@
     <ProjectGuid>{E8D81849-1336-4088-8337-9AFC746CCA88}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MSBuild.Version.Tasks.Tests</RootNamespace>
-    <AssemblyName>MSBuild.Version.Tasks.Tests</AssemblyName>
+    <RootNamespace>VersionTasks.Tests</RootNamespace>
+    <AssemblyName>VersionTasks.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -71,7 +71,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MSBuild.Version.Tasks\MSBuild.Version.Tasks.csproj">
+    <ProjectReference Include="..\VersionTasks\VersionTasks.csproj">
       <Project>{2A4A7961-5597-42E5-91EA-DB5093A3E301}</Project>
       <Name>MSBuild.Version.Tasks</Name>
     </ProjectReference>

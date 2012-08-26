@@ -1,6 +1,6 @@
-﻿using MSBuild.Version.Tasks.Exceptions;
+﻿using VersionTasks.Exceptions;
 
-namespace MSBuild.Version.Tasks
+namespace VersionTasks
 {
     /// <remarks>
     /// This is a heavily modified fork of the corresponding task in the MSBuild Versioning project <see href="http://versioning.codeplex.com/" />.

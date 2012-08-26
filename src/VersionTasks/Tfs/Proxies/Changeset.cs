@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace MSBuild.Version.Tasks.Tfs.Proxies
+namespace VersionTasks.Tfs.Proxies
 {
     internal class Changeset
     {
