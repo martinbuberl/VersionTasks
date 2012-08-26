@@ -48,7 +48,7 @@
     <Compile Include="GitVersionFileTest.cs" />
     <Compile Include="HgVersionFileTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\MSBuild.Version.Tasks\Properties\CommonAssemblyInfo.cs">
+    <Compile Include="..\VersionTasks\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
