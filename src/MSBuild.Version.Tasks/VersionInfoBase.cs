@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using MSBuild.Version.Tasks.Exceptions;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
@@ -24,7 +24,8 @@ namespace MSBuild.Version.Tasks
         public string WorkingDirectory { get; set; }
 
         internal string Changeset { get; set; }
-        internal int Dirty { get; set; }
+        internal string ChangesetShort { get; set; }
+        internal int DirtyBuild { get; set; }
 
         public override bool Execute()
         {
@@ -36,8 +37,9 @@ namespace MSBuild.Version.Tasks
                 string content = File.ReadAllText(TemplateFile);
 
                 // replace tokens in the template file content with version info
-                content = content.Replace("$CHANGESET$", Changeset);
-                content = content.Replace("$DIRTY$", Dirty.ToString());
+                content = Regex.Replace(content, "%Changeset%", Changeset, RegexOptions.IgnoreCase);
+                content = Regex.Replace(content, "%ChangesetShort%", ChangesetShort, RegexOptions.IgnoreCase);
+                content = Regex.Replace(content, "%DirtyBuild%", DirtyBuild.ToString(), RegexOptions.IgnoreCase);
 
                 // write the destination file, only if it needs to be updated
                 if (!File.Exists(DestinationFile) || File.ReadAllText(DestinationFile) != content)
