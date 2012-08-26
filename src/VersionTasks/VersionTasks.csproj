@@ -56,7 +56,16 @@
     <Compile Include="VersionInfoBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="VersionTasks.targets">
+    <None Include="Tools\Install.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\VersionTasks.psm1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\Uninstall.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Tools\VersionTasks.targets">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
