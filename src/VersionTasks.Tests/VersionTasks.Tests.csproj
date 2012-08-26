@@ -73,7 +73,7 @@
   <ItemGroup>
     <ProjectReference Include="..\VersionTasks\VersionTasks.csproj">
       <Project>{2A4A7961-5597-42E5-91EA-DB5093A3E301}</Project>
-      <Name>MSBuild.Version.Tasks</Name>
+      <Name>VersionTasks</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
