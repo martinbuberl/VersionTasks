@@ -10,6 +10,11 @@ namespace ConsoleApplicationSample
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Changeset:         " + VersionInfo.Changeset);
+            Console.WriteLine("Changeset (short): " + VersionInfo.ChangesetShort);
+            Console.WriteLine("Dirty Build:       " + VersionInfo.DirtyBuild);
+
+            Console.ReadKey();
         }
     }
 }
