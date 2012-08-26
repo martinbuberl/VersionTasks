@@ -1,4 +1,4 @@
-$itemsToDelete = Get-ChildItem . -recurse -force -include *.suo,*.user,*.cache,*.docstates,bin,obj,build,_ReSharper.*
+$itemsToDelete = Get-ChildItem . -recurse -force -include *.suo,*.user,*.cache,*.docstates,bin,obj,build,_ReSharper.*,VersionInfo.cs
 
 if ($itemsToDelete) {
     foreach ($item in $itemsToDelete) {
