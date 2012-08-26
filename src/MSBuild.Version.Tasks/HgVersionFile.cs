@@ -13,10 +13,14 @@ namespace MSBuild.Version.Tasks
         {
             try
             {
-                string changeset = ExecuteCommand("hg.exe", "identify -i")[0]; // -i (global revision id); -n (local revision number)
+                string output = ExecuteCommand("hg.exe", "identify -i --debug")[0];
 
-                Dirty = changeset.Contains("+") ? 1 : 0;
-                Changeset = changeset.Substring(0, 12);
+                // 19b6fbd0b6102f669ed451de21b5e14a
+                Changeset = output.Substring(0, 40);
+                // 19b6fbd0b610
+                ChangesetShort = output.Substring(0, 12);
+                // 0 if false, 1 if true
+                DirtyBuild = output.Contains("+") ? 1 : 0;
             }
             catch (ExecuteCommandException ex)
             {

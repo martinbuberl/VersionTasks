@@ -32,8 +32,12 @@ namespace MSBuild.Version.Tasks
                     CredentialCache.DefaultNetworkCredentials
                     );
 
+                // 1234
                 Changeset = GetChangeset(versionControlServer, WorkingDirectory).ToString();
-                Dirty = GetDirty(versionControlServer);
+                // 1234
+                ChangesetShort = Changeset;
+                // 0 if false, 1 if true
+                DirtyBuild = GetDirtyBuild(versionControlServer);
             }
             catch (TfsException ex)
             {
@@ -72,7 +76,7 @@ namespace MSBuild.Version.Tasks
             return changesetId;
         }
 
-        private static int GetDirty(VersionControlServer versionControlServer)
+        private static int GetDirtyBuild(VersionControlServer versionControlServer)
         {
             dynamic pendingSets = versionControlServer.GetPendingSets(new RecursionType(VersionAssembly).Full);
 

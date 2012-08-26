@@ -13,8 +13,12 @@ namespace MSBuild.Version.Tasks
         {
             try
             {
-                Changeset = ExecuteCommand("git.exe", "rev-parse --verify HEAD")[0]; // the command 'log --pretty=format:'%H' -n 1' is doing the same job
-                Dirty = ExecuteCommand("git.exe", "diff").Count > 0 ? 1 : 0;
+                // 89f104a77996c8011e49e37b61f2d23599cedac1
+                Changeset = ExecuteCommand("git.exe", "rev-parse --verify HEAD")[0];
+                // 89f104a779
+                ChangesetShort = Changeset.Substring(0, 10);
+                // 0 if false, 1 if true
+                DirtyBuild = ExecuteCommand("git.exe", "diff").Count > 0 ? 1 : 0;
             }
             catch (ExecuteCommandException ex)
             {
