@@ -5,7 +5,7 @@
 
   <PropertyGroup>
     <SolutionName>VersionTasks</SolutionName>
-    <AssemblyName>MSBuild.Version.Tasks</AssemblyName>
+    <AssemblyName>$(SolutionName)</AssemblyName>
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
     <Platform Condition="'$(Platform)'==''">Any CPU</Platform>
 
