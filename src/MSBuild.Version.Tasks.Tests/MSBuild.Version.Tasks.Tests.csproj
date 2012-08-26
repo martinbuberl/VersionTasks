@@ -59,7 +59,10 @@
     <None Include="Data\Templates\Changeset.tmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Templates\Dirty.tmp">
+    <None Include="Data\Templates\ChangesetShort.tmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Templates\DirtyBuild.tmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Repositories\Hg.zip">
