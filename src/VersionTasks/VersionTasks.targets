@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <VersionTasksPath Condition="'$(VersionTasksPath)' == ''">.</VersionTasksPath>
-    <VersionTasksLib>$(MSBuildVersionTasksPath)\MSBuild.Version.Tasks.dll</VersionTasksLib>
+    <VersionTasksLib>$(VersionTasksPath)\VersionTasks.dll</VersionTasksLib>
   </PropertyGroup>
 
   <UsingTask AssemblyFile="$(VersionTasksLib)" TaskName="GitVersionFile" />
