@@ -47,16 +47,29 @@ namespace MSBuild.Version.Tasks.Tests
         }
 
         [Test]
-        public void Execute_WriteDirty_ShouldWriteDirty()
+        public void Execute_WriteChangesetShort_ShouldWriteChangesetShort()
         {
-            Execute("Dirty.tmp", "Git1Dirty.txt", "Git1");
-            Assert.AreEqual("0", ReadFirstLine("Git1Dirty.txt"));
+            Execute("ChangesetShort.tmp", "Git1ChangesetShort.txt", "Git1");
+            Assert.AreEqual("ca2e4be086", ReadFirstLine("Git1ChangesetShort.txt"));
 
-            Execute("Dirty.tmp", "Git2Dirty.txt", "Git2");
-            Assert.AreEqual("1", ReadFirstLine("Git2Dirty.txt"));
+            Execute("ChangesetShort.tmp", "Git2ChangesetShort.txt", "Git2");
+            Assert.AreEqual("2b7c08e178", ReadFirstLine("Git2ChangesetShort.txt"));
 
-            Execute("Dirty.tmp", "Git3Dirty.txt", "Git3");
-            Assert.AreEqual("0", ReadFirstLine("Git3Dirty.txt"));
+            Execute("ChangesetShort.tmp", "Git3ChangesetShort.txt", "Git3");
+            Assert.AreEqual("fbfc1dc257", ReadFirstLine("Git3ChangesetShort.txt"));
+        }
+
+        [Test]
+        public void Execute_WriteDirtyBuild_ShouldWriteDirtyBuild()
+        {
+            Execute("DirtyBuild.tmp", "Git1DirtyBuild.txt", "Git1");
+            Assert.AreEqual("0", ReadFirstLine("Git1DirtyBuild.txt"));
+
+            Execute("DirtyBuild.tmp", "Git2DirtyBuild.txt", "Git2");
+            Assert.AreEqual("1", ReadFirstLine("Git2DirtyBuild.txt"));
+
+            Execute("DirtyBuild.tmp", "Git3DirtyBuild.txt", "Git3");
+            Assert.AreEqual("0", ReadFirstLine("Git3DirtyBuild.txt"));
         }
 
         private static readonly string TemplatesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Templates");
