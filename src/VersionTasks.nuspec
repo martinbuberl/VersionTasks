@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>TestTheWest123</id>
+    <id>VersionTasks</id>
     <version>$version$</version>
     <authors>Martin Buberl</authors>
     <owners>Martin Buberl</owners>
@@ -15,6 +15,10 @@
     <dependencies />
   </metadata>
   <files>
-    <file src="..\build\VersionTasks\MSBuild.Version.Tasks.dll" target="tools" />
+    <file src="..\build\VersionTasks\VersionTasks.dll" target="tools" />
+    <file src="..\build\VersionTasks\Tools\Install.ps1" target="tools" />
+    <file src="..\build\VersionTasks\Tools\Uninstall.ps1" target="tools" />
+    <file src="..\build\VersionTasks\Tools\VersionTasks.psm1" target="tools" />
+    <file src="..\build\VersionTasks\Tools\VersionTasks.targets" target="tools" />
   </files>
 </package>
