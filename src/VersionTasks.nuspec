@@ -16,9 +16,6 @@
   </metadata>
   <files>
     <file src="..\build\VersionTasks\VersionTasks.dll" target="tools" />
-    <file src="..\build\VersionTasks\Tools\Install.ps1" target="tools" />
-    <file src="..\build\VersionTasks\Tools\Uninstall.ps1" target="tools" />
-    <file src="..\build\VersionTasks\Tools\VersionTasks.psm1" target="tools" />
-    <file src="..\build\VersionTasks\Tools\VersionTasks.targets" target="tools" />
+    <file src="..\build\VersionTasks\VersionTasks.targets" target="tools" />
   </files>
 </package>
