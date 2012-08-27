@@ -24,11 +24,11 @@ There are three MSBuild Tasks to support different source control systems: `GitV
 
 **Examples**
 
-    &lt;GitVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
+<pre><code>&lt;GitVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;</code></pre>
 
-    &lt;HgVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
+<pre><code>&lt;HgVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;</code></pre>
 
-    &lt;TfsVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" WorkingDirectory="..\" /&gt;
+<pre><code>&lt;TfsVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" WorkingDirectory="..\" /&gt;</code></pre>
 
 ###Installation
 
