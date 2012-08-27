@@ -37,9 +37,9 @@ namespace VersionTasks
                 string content = File.ReadAllText(TemplateFile);
 
                 // replace tokens in the template file content with version info
-                content = Regex.Replace(content, "%Changeset%", Changeset, RegexOptions.IgnoreCase);
-                content = Regex.Replace(content, "%ChangesetShort%", ChangesetShort, RegexOptions.IgnoreCase);
-                content = Regex.Replace(content, "%DirtyBuild%", DirtyBuild.ToString(), RegexOptions.IgnoreCase);
+                content = Regex.Replace(content, @"\$changeset\$", Changeset, RegexOptions.IgnoreCase);
+                content = Regex.Replace(content, @"\$changesetshort\$", ChangesetShort, RegexOptions.IgnoreCase);
+                content = Regex.Replace(content, @"\$dirtybuild\$", DirtyBuild.ToString(), RegexOptions.IgnoreCase);
 
                 // write the destination file, only if it needs to be updated
                 if (!File.Exists(DestinationFile) || File.ReadAllText(DestinationFile) != content)
