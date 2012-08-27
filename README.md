@@ -17,17 +17,18 @@ To install [VersionTasks][package], run the following command in the [Package Ma
 
 ###MSBuild Tasks
 
-There are three MSBuild Tasks to support different source control systems: `GitVersionFile`, `HgVersionFile` (Mercurial) and `TfsVersionFile` (TFS2010).
+There are three MSBuild Tasks to support different source control systems: `GitVersionFile` (Git), `HgVersionFile` (Mercurial) and `TfsVersionFile` (Team Foundation Server 2010).
 
-`GitVersionFile` and `HgVersionFile` require the attributes `TemplateFile` and `DestinationFile`. `TfsVersionFile` additionally needs the attribute `WorkingDirectory`.
+`GitVersionFile` and `HgVersionFile` require the attributes `TemplateFile` and `DestinationFile`.<br/>
+`TfsVersionFile` additionally needs the attribute `WorkingDirectory`.
 
-####Examples
+**Examples**
 
-&lt;GitVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
+    &lt;GitVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
 
-&lt;HgVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
+    &lt;HgVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
 
-&lt;TfsVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" WorkingDirectory="..\" /&gt;
+    &lt;TfsVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" WorkingDirectory="..\" /&gt;
 
 ###Installation
 
