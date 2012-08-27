@@ -1,8 +1,8 @@
 # VersionTasks
 
-VersionTasks is a MSBuild Tasks library to automatically add the current changeset to your project.
+VersionTasks is a [MSBuild Tasks][msbuildtasks] library to automatically insert the current source control changeset into to your project.
 
-The following source control systems are supported: [Git][git], [Mercurial][mercurial] and [Team Foundation Server 2010][tfs2010]).
+The following source control systems are supported: [Git][git], [Mercurial][mercurial] and [Team Foundation Server 2010][tfs2010].
 
 ## Get it on NuGet
 
@@ -17,11 +17,17 @@ To install [VersionTasks][package], run the following command in the [Package Ma
 
 ###MSBuild Tasks
 
-There are three MSBuild Tasks to support different source control systems:
+There are three MSBuild Tasks to support different source control systems: `GitVersionFile`, `HgVersionFile` (Mercurial) and `TfsVersionFile` (TFS2010).
 
-- Git: `GitVersionFile`
-- Mercurial: `HgVersionFile`
-- TFS2010: `TfsVersionFile`
+`GitVersionFile` and `HgVersionFile` require the attributes `TemplateFile` and `DestinationFile`. `TfsVersionFile` additionally needs the attribute `WorkingDirectory`.
+
+####Examples
+
+&lt;GitVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
+
+&lt;HgVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
+
+&lt;TfsVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" WorkingDirectory="..\" /&gt;
 
 ###Installation
 
@@ -75,13 +81,12 @@ NUnitHelpers is released under the [MIT license][mit].
 
 
 
-
-
-[git]:       http://git-scm.com/
-[mercurial]: http://mercurial.selenic.com/
-[tfs2010]:   http://www.microsoft.com/visualstudio/en-us/products/2010-editions/team-foundation-server/overview
-[nuget]:     http://nuget.org
-[package]: http://nuget.org/packages/VersionTasks
-[pmc]:     http://docs.nuget.org/docs/start-here/using-the-package-manager-console
-[donate]:  https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2AGHGEL2X4VSQ
-[mit]:     https://github.com/martinbuberl/NUnitHelpers/blob/master/LICENSE
+[msbuildtasks] http://msdn.microsoft.com/en-us/library/ms171466.aspx
+[git]:         http://git-scm.com/
+[mercurial]:   http://mercurial.selenic.com/
+[tfs2010]:     http://www.microsoft.com/visualstudio/en-us/products/2010-editions/team-foundation-server/overview
+[nuget]:       http://nuget.org
+[package]:     http://nuget.org/packages/VersionTasks
+[pmc]:         http://docs.nuget.org/docs/start-here/using-the-package-manager-console
+[donate]:      https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2AGHGEL2X4VSQ
+[mit]:         https://github.com/martinbuberl/NUnitHelpers/blob/master/LICENSE
