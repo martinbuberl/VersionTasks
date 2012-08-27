@@ -27,13 +27,22 @@ There are three MSBuild Tasks to support different source control systems:
 
 The setup is currently not fully automated via NuGet - I'd love to do so when I find the time. Therefore some simple steps are necessary to get it up and running after the package is installed. Don't be scared, it's a piece of cake:
 
-1. In VisualStudio's *Solution Explorer* right-click the project to which you want to add the MSBuild Tasks and select *Unload Project*.<br/>
+- Add a new text file to the root of your solution and name it `VersionInfo.tmp`. This file is the template which gets parsed via the MSBuild task.<br/>
+For a C# project, I usually use a file like the following, but all that matters is the `$changeset$` placeholder:
+
+<pre><code>
+public static class VersionInfo
+{
+    public const string Changeset = "$changeset$";
+}</code></pre>
+
+- In the *Solution Explorer* right-click the project to which you want to add the MSBuild Tasks and select *Unload Project*.<br/>
 If you have multiple projects in your solution you probably want to pick your most generic project (e.g. Common, Core).
 
-2. If your project has been unloaded it should be designated as *(unavailable)*.<br/>
+- If your project has been unloaded it should be designated as *(unavailable)*.<br/>
 Right-click the project again and select *Edit ProjectName*.
 
-3. The project will open as an XML document in your editor.<br/>
+- The project will open as an XML document in your editor.<br/>
 Scroll to the the end of the document where you'll most likely see something like the following code:
 
 <pre><code>&lt;!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -44,9 +53,9 @@ Scroll to the the end of the document where you'll most likely see something lik
 &lt;/Target&gt;
 --&gt;</code></pre>
 
-4. Edit this section to the below code. Note that we added the import `VersionTasks.targets`, uncommented the `BeforeBuild` target and added the `HgVersionFile` task to be executed before the build. Some of the paths might be a bit different for you based on your project's structure :
+- Edit this section to the below code. Note that we added the import `VersionTasks.targets`, uncommented the `BeforeBuild` target and added the `HgVersionFile` task to be executed before the build. Some of the paths might be a bit different for you based on your project's structure :
 
-<pre><code>&lt;Import Project="..\..\packages\VersionTasks.*\tools\VersionTasks.targets" /&gt;
+<pre><code>&lt;Import Project="..\packages\VersionTasks.*\tools\VersionTasks.targets" /&gt;
 &lt;Target Name="BeforeBuild"&gt;
   &lt;GitVersionFile TemplateFile="Properties\VersionInfo.cs.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
 &lt;/Target&gt;
@@ -55,6 +64,8 @@ Scroll to the the end of the document where you'll most likely see something lik
 &lt;Target Name="AfterBuild"&gt;
 &lt;/Target&gt;
 --&gt;</code></pre>
+
+- When you're done right-click the project again and select *Reload Project*.
 
 ## Give back
 
