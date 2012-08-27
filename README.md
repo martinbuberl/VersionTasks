@@ -13,22 +13,29 @@ To install [VersionTasks][package], run the following command in the [Package Ma
 
     PM> Install-Package VersionTasks
 
-## Usage
-
-###MSBuild Tasks
+## MSBuild Tasks
 
 There are three MSBuild Tasks to support different source control systems: `GitVersionFile` (Git), `HgVersionFile` (Mercurial) and `TfsVersionFile` (Team Foundation Server 2010).
 
-`GitVersionFile` and `HgVersionFile` require the attributes `TemplateFile` and `DestinationFile`.<br/>
-`TfsVersionFile` additionally needs the attribute `WorkingDirectory`.
+### Attributes
 
-**Examples**
+All paths are relative from your project's root directory.
 
-<pre><code>&lt;GitVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;</code></pre>
+- `TemplateFile`<br/>
+The relative path of the template file which gets parsed.
+- `DestinationFile`<br/>
+The relative path of the file to generate from the template file.
+- `WorkingDirectory` (Optional)<br/>
+The relative path to Team Foundation Server's working directory.<br/>
+Note: This attribute is only necessary for the `TfsVersionFile` task.
 
-<pre><code>&lt;HgVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;</code></pre>
+*Examples*
 
-<pre><code>&lt;TfsVersionFile TemplateFile="Properties\VersionInfo.tmp" DestinationFile="Properties\VersionInfo.cs" WorkingDirectory="..\" /&gt;</code></pre>
+<pre><code>&lt;GitVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" /&gt;</code></pre>
+
+<pre><code>&lt;HgVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" /&gt;</code></pre>
+
+<pre><code>&lt;TfsVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" WorkingDirectory="..\" /&gt;</code></pre>
 
 ###Installation
 
