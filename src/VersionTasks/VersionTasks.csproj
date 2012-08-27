@@ -56,7 +56,9 @@
     <Compile Include="VersionInfoBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="VersionTasks.targets" />
+    <None Include="VersionTasks.targets">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
