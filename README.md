@@ -23,12 +23,9 @@ There are three tasks to support different source control systems: `GitVersionFi
 
 All paths are relative from your project's root directory.
 
-- **`TemplateFile`**<br/>
-The relative path of the template file which gets parsed.
-- `DestinationFile`<br/>
-The relative path of the file to generate from the template file.
-- `WorkingDirectory` *(Only TFS)*<br/>
-The relative path to Team Foundation Server's working directory.
+- `TemplateFile`: The relative path of the template file which gets parsed.
+- `DestinationFile`: The relative path of the file to generate from the template file.
+- `WorkingDirectory` (Optional): The relative path to Team Foundation Server's working directory.
 
 **Examples**
 
