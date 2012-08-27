@@ -13,11 +13,13 @@ To install [VersionTasks][package], run the following command in the [Package Ma
 
     PM> Install-Package VersionTasks
 
-## MSBuild Tasks
+## Usage
+
+### MSBuild Tasks
 
 There are three tasks to support different source control systems: `GitVersionFile`, `HgVersionFile` and `TfsVersionFile`.
 
-### Attributes
+**Attributes**
 
 All paths are relative from your project's root directory.
 
@@ -29,7 +31,7 @@ The relative path of the file to generate from the template file.
 The relative path to Team Foundation Server's working directory.<br/>
 This attribute is only necessary for the `TfsVersionFile` task.
 
-###Examples###
+**Examples**
 
 <pre><code>&lt;GitVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" /&gt;</code></pre>
 
