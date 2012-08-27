@@ -81,12 +81,12 @@ NUnitHelpers is released under the [MIT license][mit].
 
 
 
-[msbuildtasks] http://msdn.microsoft.com/en-us/library/ms171466.aspx
-[git]:         http://git-scm.com/
-[mercurial]:   http://mercurial.selenic.com/
-[tfs2010]:     http://www.microsoft.com/visualstudio/en-us/products/2010-editions/team-foundation-server/overview
-[nuget]:       http://nuget.org
-[package]:     http://nuget.org/packages/VersionTasks
-[pmc]:         http://docs.nuget.org/docs/start-here/using-the-package-manager-console
-[donate]:      https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2AGHGEL2X4VSQ
-[mit]:         https://github.com/martinbuberl/NUnitHelpers/blob/master/LICENSE
+[msbuildtasks]: http://msdn.microsoft.com/en-us/library/ms171466.aspx
+[git]:          http://git-scm.com/
+[mercurial]:    http://mercurial.selenic.com/
+[tfs2010]:      http://www.microsoft.com/visualstudio/en-us/products/2010-editions/team-foundation-server/overview
+[nuget]:        http://nuget.org
+[package]:      http://nuget.org/packages/VersionTasks
+[pmc]:          http://docs.nuget.org/docs/start-here/using-the-package-manager-console
+[donate]:       https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2AGHGEL2X4VSQ
+[mit]:          https://github.com/martinbuberl/NUnitHelpers/blob/master/LICENSE
