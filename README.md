@@ -24,13 +24,15 @@ If you have multiple projects in your solution you probably want to pick your mo
 
 3. You'll see an XML document which is your project's MSBuild file. Scroll to the the end of this XML document until you see the following code:
 
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+<pre><code>
+    &lt;!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
+    &lt;Target Name="BeforeBuild"&gt;
+    &lt;/Target&gt;
+    &lt;Target Name="AfterBuild"&gt;
+    &lt;/Target&gt;
+    --&gt;
+</code></pre>
 
 2. If you haven't changed this section of your project yet, you'll most likely see something like this at the bottom of 
 
