@@ -1,6 +1,8 @@
 # VersionTasks
 
-VersionTasks is a MSBuild Tasks library to automatically add the current changeset to your project. Currently, this supports [Git][git], [Mercurial][mercurial] and [Team Foundation Server 2010][tfs2010]).
+VersionTasks is a MSBuild Tasks library to automatically add the current changeset to your project.
+
+The following source control systems are supported: [Git][git], [Mercurial][mercurial] and [Team Foundation Server 2010][tfs2010]).
 
 ## Get it on NuGet
 
@@ -13,16 +15,26 @@ To install [VersionTasks][package], run the following command in the [Package Ma
 
 ## Usage
 
+###MSBuild Tasks
+
+There are three MSBuild Tasks to support different source control systems:
+
+- Git: `GitVersionFile`
+- Mercurial: `HgVersionFile`
+- TFS2010: `TfsVersionFile`
+
 ###Installation
 
-The setup is currently not fully automated via NuGet (I'd love to do so when I find the time), therefore some simple steps are necessary to get it up and running after the package is installed. Don't be scared, it's a piece of cake:
+The setup is currently not fully automated via NuGet - I'd love to do so when I find the time. Therefore some simple steps are necessary to get it up and running after the package is installed. Don't be scared, it's a piece of cake:
 
-1. In VisualStudio's *Solution Explorer* right-click the project you want to add the VersionTasks tasks to and select *Unload Project*.<br/>
-If you have multiple projects in your solution you probably want to pick your most generic project (e.g. Common, Core etc.).
+1. In VisualStudio's *Solution Explorer* right-click the project to which you want to add the MSBuild Tasks and select *Unload Project*.<br/>
+If you have multiple projects in your solution you probably want to pick your most generic project (e.g. Common, Core).
 
-2. There should be an *(unavailable)* behind your project's name. Right-click the project again and select *Edit ProjectName*.
+2. If your project has been unloaded it should be designated as *(unavailable)*.<br/>
+Right-click the project again and select *Edit ProjectName*.
 
-3. You'll see an XML document which is your project's MSBuild file. Scroll to the the end of this XML document until you see the following code:
+3. The project will open as an XML document in your editor.<br/>
+Scroll to the the end of the document where you'll most likely see something like the following code:
 
 <pre><code>&lt;!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
     Other similar extension points exist, see Microsoft.Common.targets.
@@ -32,11 +44,17 @@ If you have multiple projects in your solution you probably want to pick your mo
 &lt;/Target&gt;
 --&gt;</code></pre>
 
-2. If you haven't changed this section of your project yet, you'll most likely see something like this at the bottom of 
+4. Edit this section to the below code. Some of the paths might be a bit different for you based on your project's structure :
 
-###
-
-
+<pre><code>&lt;Import Project="..\..\packages\VersionTasks.*\tools\VersionTasks.targets" /&gt;
+&lt;Target Name="BeforeBuild"&gt;
+  &lt;GitVersionFile TemplateFile="Properties\VersionInfo.cs.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
+&lt;/Target&gt;
+&lt;!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+    Other similar extension points exist, see Microsoft.Common.targets.
+&lt;Target Name="AfterBuild"&gt;
+&lt;/Target&gt;
+--&gt;</code></pre>
 
 ## Give back
 
