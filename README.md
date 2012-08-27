@@ -44,7 +44,7 @@ Scroll to the the end of the document where you'll most likely see something lik
 &lt;/Target&gt;
 --&gt;</code></pre>
 
-4. Edit this section to the below code. Some of the paths might be a bit different for you based on your project's structure :
+4. Edit this section to the below code. Note that we added the import `VersionTasks.targets`, uncommented the `BeforeBuild` target and added the `HgVersionFile` task to be executed before the build. Some of the paths might be a bit different for you based on your project's structure :
 
 <pre><code>&lt;Import Project="..\..\packages\VersionTasks.*\tools\VersionTasks.targets" /&gt;
 &lt;Target Name="BeforeBuild"&gt;
