@@ -23,13 +23,12 @@ There are three tasks to support different source control systems: `GitVersionFi
 
 All paths are relative from your project's root directory.
 
-- `TemplateFile`<br/>
+- **`TemplateFile`**<br/>
 The relative path of the template file which gets parsed.
 - `DestinationFile`<br/>
 The relative path of the file to generate from the template file.
-- `WorkingDirectory` *(Optional)*<br/>
-The relative path to Team Foundation Server's working directory.<br/>
-This attribute is only necessary for the `TfsVersionFile` task.
+- `WorkingDirectory` *(Only TFS)*<br/>
+The relative path to Team Foundation Server's working directory.
 
 **Examples**
 
@@ -39,7 +38,20 @@ This attribute is only necessary for the `TfsVersionFile` task.
 
 <pre><code>&lt;TfsVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" WorkingDirectory="\" /&gt;</code></pre>
 
-###Installation
+### Template File
+
+The template file can be any file in 
+
+**Placeholders**
+
+- `$changeset$`<br/>
+Gets replaced with the currently checked-out changeset of your source control system.
+- `$changesetshort$`<br/>
+Gets replaced with the currently checked-out short changeset of your source control system.
+- `$dirtybuild$`<br/>
+Indicates if there are currently uncommited changes in your project.
+
+## Installation
 
 The setup is currently not fully automated via NuGet - I'd love to do so when I find the time. Therefore some simple steps are necessary to get it up and running after the package is installed. Don't be scared, it's a piece of cake:
 
