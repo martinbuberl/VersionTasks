@@ -27,17 +27,16 @@ There are three MSBuild Tasks to support different source control systems:
 
 The setup is currently not fully automated via NuGet - I'd love to do so when I find the time. Therefore some simple steps are necessary to get it up and running after the package is installed. Don't be scared, it's a piece of cake:
 
-- Add a new text file to the root of your solution and name it `VersionInfo.tmp`. This file is the template which gets parsed via the MSBuild task.<br/>
+- In Visual Studio add a new text file to the root of your project and name it `VersionInfo.tmp`.<br/>
+If you have multiple projects in your solution you probably want to pick your most generic project (e.g. Common, Core).<br/>
 For a C# project, I usually use a file like the following, but all that matters is the `$changeset$` placeholder:
 
-<pre><code>
-public static class VersionInfo
+<pre><code>public static class VersionInfo
 {
     public const string Changeset = "$changeset$";
 }</code></pre>
 
-- In the *Solution Explorer* right-click the project to which you want to add the MSBuild Tasks and select *Unload Project*.<br/>
-If you have multiple projects in your solution you probably want to pick your most generic project (e.g. Common, Core).
+- In the *Solution Explorer* right-click the project to which you want to add the MSBuild Tasks and select *Unload Project*.
 
 - If your project has been unloaded it should be designated as *(unavailable)*.<br/>
 Right-click the project again and select *Edit ProjectName*.
@@ -57,7 +56,7 @@ Scroll to the the end of the document where you'll most likely see something lik
 
 <pre><code>&lt;Import Project="..\packages\VersionTasks.*\tools\VersionTasks.targets" /&gt;
 &lt;Target Name="BeforeBuild"&gt;
-  &lt;GitVersionFile TemplateFile="Properties\VersionInfo.cs.tmp" DestinationFile="Properties\VersionInfo.cs" /&gt;
+  &lt;GitVersionFile TemplateFile="VersionInfo.tmp" DestinationFile="VersionInfo.cs" /&gt;
 &lt;/Target&gt;
 &lt;!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
     Other similar extension points exist, see Microsoft.Common.targets.
