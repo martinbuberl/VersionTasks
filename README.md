@@ -21,9 +21,9 @@ There are three tasks to support different source control systems: `GitVersionFi
 
 **Attributes**
 
-- `TemplateFile`: The relative path of the template file to parse (Required).
-- `DestinationFile`: The relative path of the file to get generated from the template file (Required).
-- `WorkingDirectory`: The relative path to the Team Foundation Server's working directory (Optional).
+- `TemplateFile`: Path of the template file to parse (Required).
+- `DestinationFile`: Path of the file to get generated from the template file (Required).
+- `WorkingDirectory`: Path to the Team Foundation Server's working directory (Optional).
 
 All paths are relative from your project's root directory. The `WorkingDirectory` attribute is only necessary if you are using the `TfsVersionFile` task. 
 
@@ -35,7 +35,9 @@ All paths are relative from your project's root directory. The `WorkingDirectory
 
 ### Templating 
 
-The template contains the placeholder which are replaced on every build with the corresponding values from your repository. There are no restrictions on the file type or how a template needs to look like. For example a template written in C# could look like the following example:
+The template contains the placeholder which are replaced on every build with the corresponding values from your repository. There are no restrictions on the file type or how a template needs to look like.
+
+For example a template written in C# could look like the following:
 
 **TemplateFile: Version.tmp**
 
@@ -48,7 +50,7 @@ public static class Version
     public static bool DirtyBuild = Convert.ToBoolean($dirtybuild$);
 }</code></pre>
 
-The build task will then create a file based on this template under the path and with the file name you specified in the `DestinationFile` attribute. For the above example using e.g. the `GitVersionFile` task  a file like the following will get generated:
+The build task will then create a file based on this template under the path and with the file name you specified in the `DestinationFile` attribute. For the above example using e.g. the `GitVersionFile` task  a file like the following gets generated:
 
 **DestinationFile: Version.cs**
 
@@ -68,6 +70,12 @@ public static class Version
 - `$dirtybuild$`: Indicates a dirty build. `1` if there are uncommitted changes; otherwise, `0`.
 
 All placeholder are delimited using dollar signs ($) and get replaced with the currently checked-out values of your repository. Note that Team Foundation Server's shortened changeset will be the same as the changeset due to their increase number format.
+
+### Check out the Sample
+
+If you want to see everything in action working together you can dig into this small C# console application I created:
+
+https://github.com/martinbuberl/VersionTasks.Sample
 
 ## Installation
 
