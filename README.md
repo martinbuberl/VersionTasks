@@ -114,11 +114,11 @@ Tip: If you have multiple projects in your solution you probably want to pick th
 
 - *Build* your project - that's where all the magic is happening.
 
-- In the *Solution Explorer* enable *Show All Files* and click *Refresh*. You should see a new file `Version.txt` in the root of your project. Open that file and you should see the current changeset of your repository e.g `8d596df194b12b6d66baad2f16a240afbf7627d6`. Et voilà!
+- In the *Solution Explorer* enable *Show All Files* and click *Refresh*. You should see a new file `Version.txt` in the root of your project. Open that file and you should see the current changeset of your repository. Et voilà!
 
 ## Give back
 
-If you found this project useful you can [buy me a beer][donate].
+If you found this project useful you can follow me on Twitter ([@martinbuberl][twitter]) or [buy me a beer][donate].
 
 ## License
 VersionTasks is released under the [MIT license][mit].
@@ -133,5 +133,6 @@ VersionTasks is released under the [MIT license][mit].
 [package]:      http://nuget.org/packages/VersionTasks
 [pmc]:          http://docs.nuget.org/docs/start-here/using-the-package-manager-console
 [sample]: https://github.com/martinbuberl/VersionTasks.Sample
+[twitter]:  https://twitter.com/martinbuberl
 [donate]:       https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2AGHGEL2X4VSQ
 [mit]:          https://github.com/martinbuberl/NUnitHelpers/blob/master/LICENSE
