@@ -81,22 +81,12 @@ https://github.com/martinbuberl/VersionTasks.Sample
 
 The setup is currently not fully automated via NuGet - I'd love to do so when I find the time. Therefore some simple steps are necessary to get it up and running after the package is installed. Don't be scared, it's a piece of cake:
 
-- In Visual Studio add a new text file to the root of your project and name it `VersionInfo.tmp`.<br/>
-If you have multiple projects in your solution you probably want to pick your most generic project (e.g. Common, Core).<br/>
-For a C# project, I usually use a file like the following, but all that matters is the `$changeset$` placeholder:
+- In Visual Studio add a new text file to the root of your project - or wherever you want, but stick with me here - and name it `Version.tmp`. Insert the placeholder `$changeset$` into that file and save it.<br/>
+Tip: If you have multiple projects in your solution you probably want to pick the most generic one (e.g. Common, Core).
 
-<pre><code>public static class VersionInfo
-{
-    public const string Changeset = "$changeset$";
-}</code></pre>
+- In the *Solution Explorer* right-click the project and select *Unload Project*. If your project has been unloaded it should be designated as *(unavailable)*. Right-click the project again and select *Edit ProjectName*.
 
-- In the *Solution Explorer* right-click the project to which you want to add the MSBuild Tasks and select *Unload Project*.
-
-- If your project has been unloaded it should be designated as *(unavailable)*.<br/>
-Right-click the project again and select *Edit ProjectName*.
-
-- The project will open as an XML document in your editor.<br/>
-Scroll to the the end of the document where you'll most likely see something like the following code:
+- The project will open as an XML document in your editor. Scroll to the the end of the document where you'll most likely see something like the following code:
 
 <pre><code>&lt;!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
     Other similar extension points exist, see Microsoft.Common.targets.
@@ -106,11 +96,11 @@ Scroll to the the end of the document where you'll most likely see something lik
 &lt;/Target&gt;
 --&gt;</code></pre>
 
-- Edit this section to the below code. Note that we added the import `VersionTasks.targets`, uncommented the `BeforeBuild` target and added the `HgVersionFile` task to be executed before the build. Some of the paths might be a bit different for you based on your project's structure :
+- Edit this section to the below code. Note that we added the import `VersionTasks.targets`, uncommented the `BeforeBuild` target and added the `HgVersionFile` task to be executed before build. Change this task appropriate  to `HgVersionFile` or `TfsVersionFile` if your repository is not using Git as source control system:
 
 <pre><code>&lt;Import Project="..\packages\VersionTasks.*\tools\VersionTasks.targets" /&gt;
 &lt;Target Name="BeforeBuild"&gt;
-  &lt;GitVersionFile TemplateFile="VersionInfo.tmp" DestinationFile="VersionInfo.cs" /&gt;
+  &lt;GitVersionFile TemplateFile="Version.tmp" DestinationFile="Version.txt" /&gt;
 &lt;/Target&gt;
 &lt;!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
     Other similar extension points exist, see Microsoft.Common.targets.
@@ -119,6 +109,10 @@ Scroll to the the end of the document where you'll most likely see something lik
 --&gt;</code></pre>
 
 - When you're done right-click the project again and select *Reload Project*.
+
+- *Build* your project - that's where all the magic is happening.
+
+- In the *Solution Explorer* enable *Show All Files* and click *Refresh*. You should see a new file `Version.txt` in the root of your project. Open that file and you should see the current changeset of your repository e.g `8d596df194b12b6d66baad2f16a240afbf7627d6`.
 
 ## Give back
 
