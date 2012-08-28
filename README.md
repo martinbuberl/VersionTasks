@@ -1,6 +1,6 @@
 # VersionTasks
 
-VersionTasks is a [MSBuild Tasks][msbuildtasks] library to automatically insert the current source control changeset into to your project.
+VersionTasks is a [MSBuild Tasks][msbuildtasks] library to automatically insert the current repository's changeset into to your project.
 
 The following source control systems are supported: [Git][git], [Mercurial][mercurial] and [Team Foundation Server 2010][tfs2010].
 
@@ -21,11 +21,11 @@ There are three tasks to support different source control systems: `GitVersionFi
 
 **Attributes**
 
-All paths are relative from your project's root directory.
+- `TemplateFile`: The relative path of the template file to parse (Required).
+- `DestinationFile`: The relative path of the file to get generated from the template file (Required).
+- `WorkingDirectory`: The relative path to the Team Foundation Server's working directory (Optional).
 
-- `TemplateFile`: The relative path of the template file which gets parsed.
-- `DestinationFile`: The relative path of the file to generate from the template file.
-- `WorkingDirectory`: The relative path to Team Foundation Server's working directory (only for `TfsVersionFile`).
+All paths are relative from your project's root directory. The `WorkingDirectory` attribute is only necessary if you are using the `TfsVersionFile` task. 
 
 **Examples**
 
@@ -33,18 +33,41 @@ All paths are relative from your project's root directory.
 &lt;HgVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" /&gt;
 &lt;TfsVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" WorkingDirectory="\" /&gt;</code></pre>
 
-### Template File
+### Templating 
 
-The template file can be any file in 
+The template contains the placeholder which are replaced on every build with the corresponding values from your repository. There are no restrictions on the file type or how a template needs to look like. For example a template written in C# could look like the following example:
 
-**Placeholders**
+**TemplateFile: Version.tmp**
 
-- `$changeset$`<br/>
-Gets replaced with the currently checked-out changeset of your source control system.
-- `$changesetshort$`<br/>
-Gets replaced with the currently checked-out short changeset of your source control system.
-- `$dirtybuild$`<br/>
-Indicates if there are currently uncommited changes in your project.
+<pre><code>using System;
+
+public static class Version
+{
+    public const string Changeset = "$changeset$";
+    public const string ChangesetShort = "$changesetshort$";
+    public static bool DirtyBuild = Convert.ToBoolean($dirtybuild$);
+}</code></pre>
+
+The build task will then create a file based on this template under the path and with the file name you specified in the `DestinationFile` attribute. For the above example using e.g. the `GitVersionFile` task  a file like the following will get generated:
+
+**DestinationFile: Version.cs**
+
+<pre><code>using System;
+
+public static class Version
+{
+    public const string Changeset = "8d596df194b12b6d66baad2f16a240afbf7627d6";
+    public const string ChangesetShort = "8d596df194";
+    public static bool DirtyBuild = Convert.ToBoolean(0);
+}</code></pre>
+
+**Placeholder**
+
+- `$changeset$`: Changeset of the repository.
+- `$changesetshort$`: Shortened changeset of the repository.
+- `$dirtybuild$`: Indicates a dirty build. `1` if there are uncommitted changes; otherwise, `0`.
+
+All placeholder are delimited using dollar signs ($) and get replaced with the currently checked-out values of your repository. Note that Team Foundation Server's shortened changeset will be the same as the changeset due to their increase number format.
 
 ## Installation
 
