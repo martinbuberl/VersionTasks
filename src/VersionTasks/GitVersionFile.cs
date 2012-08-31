@@ -17,8 +17,8 @@ namespace VersionTasks
                 Changeset = ExecuteCommand("git.exe", "rev-parse --verify HEAD")[0];
                 // 89f104a779
                 ChangesetShort = Changeset.Substring(0, 10);
-                // 0 if false, 1 if true
-                DirtyBuild = ExecuteCommand("git.exe", "diff").Count > 0 ? 1 : 0;
+                // true/false
+                DirtyBuild = ExecuteCommand("git.exe", "diff").Count > 0;
             }
             catch (ExecuteCommandException ex)
             {

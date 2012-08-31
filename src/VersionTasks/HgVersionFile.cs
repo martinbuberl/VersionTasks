@@ -19,8 +19,8 @@ namespace VersionTasks
                 Changeset = output.Substring(0, 40);
                 // 19b6fbd0b610
                 ChangesetShort = output.Substring(0, 12);
-                // 0 if false, 1 if true
-                DirtyBuild = output.Contains("+") ? 1 : 0;
+                // true/false
+                DirtyBuild = output.Contains("+");
             }
             catch (ExecuteCommandException ex)
             {

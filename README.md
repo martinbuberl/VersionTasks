@@ -47,7 +47,7 @@ public static class Version
 {
     public const string Changeset = "$changeset$";
     public const string ChangesetShort = "$changesetshort$";
-    public static bool DirtyBuild = Convert.ToBoolean($dirtybuild$);
+    public const bool DirtyBuild = $dirtybuild$;
 }</code></pre>
 
 The build task will then create a file based on this template under the path and with the file name you specified in the `DestinationFile` attribute. For the above example using e.g. the `GitVersionFile` task  a file like the following gets generated:
@@ -60,7 +60,7 @@ public static class Version
 {
     public const string Changeset = "8d596df194b12b6d66baad2f16a240afbf7627d6";
     public const string ChangesetShort = "8d596df194";
-    public static bool DirtyBuild = Convert.ToBoolean(0);
+    public const bool DirtyBuild = false;
 }</code></pre>
 
 Note that you can add this generated file to your solution - if you need it to be compiled - but you don't want to add it to your version control. This file will be different with every new changeset.
@@ -69,7 +69,7 @@ Note that you can add this generated file to your solution - if you need it to b
 
 - `$changeset$`: Changeset of the repository.
 - `$changesetshort$`: Shortened changeset of the repository.
-- `$dirtybuild$`: Indicates a dirty build. `1` if there are uncommitted changes; otherwise, `0`.
+- `$dirtybuild$`: Indicates a dirty build. `true` if there are uncommitted changes; otherwise, `false`.
 
 All placeholders are delimited using dollar signs ($) and are replaced with the currently checked-out repository's values. Note that Team Foundation Server's shortened changeset will be the same value as the changeset due to its increased number format.
 

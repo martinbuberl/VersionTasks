@@ -63,13 +63,13 @@ namespace VersionTasks.Tests
         public void Execute_WriteDirtyBuild_ShouldWriteDirtyBuild()
         {
             Execute("DirtyBuild.tmp", "Git1DirtyBuild.txt", "Git1");
-            Assert.AreEqual("0", ReadFirstLine("Git1DirtyBuild.txt"));
+            Assert.AreEqual("false", ReadFirstLine("Git1DirtyBuild.txt"));
 
             Execute("DirtyBuild.tmp", "Git2DirtyBuild.txt", "Git2");
-            Assert.AreEqual("1", ReadFirstLine("Git2DirtyBuild.txt"));
+            Assert.AreEqual("true", ReadFirstLine("Git2DirtyBuild.txt"));
 
             Execute("DirtyBuild.tmp", "Git3DirtyBuild.txt", "Git3");
-            Assert.AreEqual("0", ReadFirstLine("Git3DirtyBuild.txt"));
+            Assert.AreEqual("false", ReadFirstLine("Git3DirtyBuild.txt"));
         }
 
         private static readonly string TemplatesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Templates");

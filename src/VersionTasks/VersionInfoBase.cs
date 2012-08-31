@@ -25,7 +25,7 @@ namespace VersionTasks
 
         internal string Changeset { get; set; }
         internal string ChangesetShort { get; set; }
-        internal int DirtyBuild { get; set; }
+        internal bool DirtyBuild { get; set; }
 
         public override bool Execute()
         {
@@ -39,7 +39,7 @@ namespace VersionTasks
                 // replace tokens in the template file content with version info
                 content = Regex.Replace(content, @"\$changeset\$", Changeset, RegexOptions.IgnoreCase);
                 content = Regex.Replace(content, @"\$changesetshort\$", ChangesetShort, RegexOptions.IgnoreCase);
-                content = Regex.Replace(content, @"\$dirtybuild\$", DirtyBuild.ToString(), RegexOptions.IgnoreCase);
+                content = Regex.Replace(content, @"\$dirtybuild\$", DirtyBuild.ToString().ToLower(), RegexOptions.IgnoreCase);
 
                 // write the destination file, only if it needs to be updated
                 if (!File.Exists(DestinationFile) || File.ReadAllText(DestinationFile) != content)

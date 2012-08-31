@@ -36,7 +36,7 @@ namespace VersionTasks
                 Changeset = GetChangeset(versionControlServer, WorkingDirectory).ToString();
                 // 1234
                 ChangesetShort = Changeset;
-                // 0 if false, 1 if true
+                // true/false
                 DirtyBuild = GetDirtyBuild(versionControlServer);
             }
             catch (TfsException ex)
@@ -76,7 +76,7 @@ namespace VersionTasks
             return changesetId;
         }
 
-        private static int GetDirtyBuild(VersionControlServer versionControlServer)
+        private static bool GetDirtyBuild(VersionControlServer versionControlServer)
         {
             dynamic pendingSets = versionControlServer.GetPendingSets(new RecursionType(VersionAssembly).Full);
 
@@ -84,10 +84,10 @@ namespace VersionTasks
             {
                 // compare pending sets with local machine name
                 if (String.Equals(pendingSet.Computer, Environment.MachineName, StringComparison.InvariantCultureIgnoreCase))
-                    return 1;
+                    return true;
             }
 
-            return 0;
+            return false;
         }
     }
 }
