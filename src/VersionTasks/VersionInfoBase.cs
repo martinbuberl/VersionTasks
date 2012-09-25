@@ -31,6 +31,11 @@ namespace VersionTasks
         {
             try
             {
+                // set defaults
+                Changeset = String.Empty;
+                ChangesetShort = String.Empty;
+                DirtyBuild = false;
+
                 SetVersionInfo();
 
                 // read content of the template file
