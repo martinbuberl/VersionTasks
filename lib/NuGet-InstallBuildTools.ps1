@@ -1,5 +1,6 @@
 $currentPath = Split-Path $MyInvocation.MyCommand.Path
 
+& "$currentPath\nuget" update -self
 & "$currentPath\nuget" install MSBuildTasks
 & "$currentPath\nuget" install NUnit.Runners
 
