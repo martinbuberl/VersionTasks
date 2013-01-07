@@ -37,9 +37,10 @@ All paths are relative from your project's root directory. The `WorkingDirectory
 
 <pre><code>&lt;GitVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" /&gt;
 &lt;HgVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" /&gt;
-&lt;TfsVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" WorkingDirectory="\" /&gt;
-&lt;TfsVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" WorkingDirectory="\"
-                TfsVersion="2012" /&gt;</code></pre>
+&lt;TfsVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs"
+                WorkingDirectory="\" /&gt;
+&lt;TfsVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs"
+                WorkingDirectory="\" TfsVersion="2012" /&gt;</code></pre>
 
 ### Templating 
 
