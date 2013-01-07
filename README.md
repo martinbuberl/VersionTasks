@@ -2,7 +2,12 @@
 
 VersionTasks is an [MSBuild Tasks][msbuildtasks] library to automatically insert the current repository's changeset into to your project.
 
-The following source control systems are supported: [Git][git], [Mercurial][mercurial] and [Team Foundation Server 2010][tfs2010].
+The following source control systems are supported:
+
+- [Git][git]
+- [Mercurial][mercurial]
+- Team Foundation Server 2010
+- [Team Foundation Server 2012][tfs].
 
 ## Get it on NuGet
 
@@ -23,15 +28,17 @@ There are three tasks to support different source control systems: `GitVersionFi
 
 - `TemplateFile`: Path of the template file to parse (Required).
 - `DestinationFile`: Path of the file to get generated from the template file (Required).
-- `WorkingDirectory`: Path to the Team Foundation Server's working directory (Optional).
+- `WorkingDirectory`: Path to the source controled working directory (Optional).
+- `TfsVersion`: Version of the Team Foundation Server (e.g. `2010 (default)`, `2012`) (Optional).
 
-All paths are relative from your project's root directory. The `WorkingDirectory` attribute is only necessary if you are using the `TfsVersionFile` task. 
+All paths are relative from your project's root directory. The `WorkingDirectory` attribute is only required if you are using the `TfsVersionFile` task.
 
 **Examples**
 
 <pre><code>&lt;GitVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" /&gt;
 &lt;HgVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" /&gt;
-&lt;TfsVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" WorkingDirectory="\" /&gt;</code></pre>
+&lt;TfsVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" WorkingDirectory="\" /&gt;
+&lt;TfsVersionFile TemplateFile="Properties\Version.tmp" DestinationFile="Properties\Version.cs" WorkingDirectory="\" TfsVersion="2012" /&gt;</code></pre>
 
 ### Templating 
 
@@ -128,11 +135,11 @@ VersionTasks is released under the [MIT license][mit].
 [msbuildtasks]: http://msdn.microsoft.com/en-us/library/ms171466.aspx
 [git]:          http://git-scm.com/
 [mercurial]:    http://mercurial.selenic.com/
-[tfs2010]:      http://www.microsoft.com/visualstudio/en-us/products/2010-editions/team-foundation-server/overview
+[tfs]:          http://www.microsoft.com/visualstudio/eng/products/visual-studio-team-foundation-server-2012
 [nuget]:        http://nuget.org
 [package]:      http://nuget.org/packages/VersionTasks
 [pmc]:          http://docs.nuget.org/docs/start-here/using-the-package-manager-console
-[sample]: https://github.com/martinbuberl/VersionTasks.Sample
-[twitter]:  https://twitter.com/martinbuberl
+[sample]:       https://github.com/martinbuberl/VersionTasks.Sample
+[twitter]:      https://twitter.com/martinbuberl
 [donate]:       https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2AGHGEL2X4VSQ
 [mit]:          https://github.com/martinbuberl/NUnitHelpers/blob/master/LICENSE

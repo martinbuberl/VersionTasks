@@ -8,10 +8,10 @@
     <projectUrl>https://github.com/martinbuberl/VersionTasks</projectUrl>
     <licenseUrl>https://github.com/martinbuberl/VersionTasks/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>VersionTasks is an MSBuild Tasks library to automatically insert the current repository's changeset into to your project. Supports Git, Mercurial and Team Foundation Server 2010.</description>
+    <description>VersionTasks is an MSBuild Tasks library to automatically insert the current repository's changeset into to your project. Supports Git, Mercurial, Team Foundation Server 2010 and Team Foundation Server 2012.</description>
     <releaseNotes />
     <language>en-US</language>
-    <tags>MSBuild Git Mercurial Hg TFS2010</tags>
+    <tags>MSBuild Git Mercurial Hg TFS2010 TFS2012</tags>
     <dependencies />
   </metadata>
   <files>

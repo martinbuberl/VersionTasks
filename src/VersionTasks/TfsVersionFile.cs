@@ -18,17 +18,40 @@ namespace VersionTasks
     /// <see href="http://msbuildtasks.tigris.org/"/>
     public class TfsVersionFile : VersionInfoBase
     {
-        private static readonly Assembly ClientAssembly = Assembly.Load("Microsoft.TeamFoundation.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
-        private static readonly Assembly VersionAssembly = Assembly.Load("Microsoft.TeamFoundation.VersionControl.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
+        /// <example>2012</example>
+        public string TfsVersion { get; set; }
+
+        private static Assembly _clientAssembly;
+        private static Assembly _versionAssembly;
 
         internal override void SetVersionInfo()
         {
+            string tfsAssemblyVersion;
+
+            // TFS 2010 is default for backward compatibility
+            switch (TfsVersion)
+            {
+                case "2012":
+                    tfsAssemblyVersion = "11.0.0.0";
+                    break;
+                default:
+                    tfsAssemblyVersion = "10.0.0.0";
+                    break;
+            }
+
+            _clientAssembly = Assembly.Load(
+                String.Format("Microsoft.TeamFoundation.Client, Version={0}, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", tfsAssemblyVersion)
+                );
+            _versionAssembly = Assembly.Load(
+                String.Format("Microsoft.TeamFoundation.VersionControl.Client, Version={0}, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", tfsAssemblyVersion)
+                );
+
             try
             {
                 VersionControlServer versionControlServer = new VersionControlServer(
-                    ClientAssembly,
-                    VersionAssembly,
-                    new Workstation(VersionAssembly).GetLocalWorkspaceInfo(WorkingDirectory).ServerUri.ToString(),
+                    _clientAssembly,
+                    _versionAssembly,
+                    new Workstation(_versionAssembly).GetLocalWorkspaceInfo(WorkingDirectory).ServerUri.ToString(),
                     CredentialCache.DefaultNetworkCredentials
                     );
 
@@ -53,22 +76,22 @@ namespace VersionTasks
             int changesetId = 0;
 
             WorkspaceVersionSpec workspaceVersionSpec = new WorkspaceVersionSpec(
-                VersionAssembly,
+                _versionAssembly,
                 versionControlServer.GetWorkspace(workingDirectory)
                 );
 
             IEnumerable history = versionControlServer.QueryHistory(
                 workingDirectory,
-                new VersionSpec(VersionAssembly).Latest,
-                new RecursionType(VersionAssembly).Full,
+                new VersionSpec(_versionAssembly).Latest,
+                new RecursionType(_versionAssembly).Full,
                 workspaceVersionSpec
                 );
 
             IEnumerator historyEnumerator = history.GetEnumerator();
-            Changeset changeset = new Changeset(VersionAssembly);
+            Changeset changeset = new Changeset(_versionAssembly);
 
             if (historyEnumerator.MoveNext())
-                changeset = new Changeset(VersionAssembly, historyEnumerator.Current);
+                changeset = new Changeset(_versionAssembly, historyEnumerator.Current);
 
             if (changeset.Instance != null)
                 changesetId = changeset.ChangesetId;
@@ -78,7 +101,7 @@ namespace VersionTasks
 
         private static bool GetDirtyBuild(VersionControlServer versionControlServer)
         {
-            dynamic pendingSets = versionControlServer.GetPendingSets(new RecursionType(VersionAssembly).Full);
+            dynamic pendingSets = versionControlServer.GetPendingSets(new RecursionType(_versionAssembly).Full);
 
             foreach (var pendingSet in pendingSets)
             {
