@@ -1,6 +1,6 @@
 # VersionTasks
 
-VersionTasks is an [MSBuild Tasks][msbuildtasks] library to automatically insert the current repository's changeset into to your project.
+VersionTasks is an [MSBuild Tasks][msbuildtasks] library to automatically insert the current repository's changeset into your project.
 
 The following source control systems are supported:
 
