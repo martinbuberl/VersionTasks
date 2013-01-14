@@ -18,7 +18,7 @@ namespace VersionTasks
                 // 89f104a779
                 ChangesetShort = Changeset.Substring(0, 10);
                 // true/false
-                DirtyBuild = ExecuteCommand("git.exe", "diff").Count > 0;
+                DirtyBuild = ExecuteCommand("git.exe", "diff").Count > 0 || ExecuteCommand("git.exe", "diff --cached").Count > 0;
             }
             catch (ExecuteCommandException ex)
             {
