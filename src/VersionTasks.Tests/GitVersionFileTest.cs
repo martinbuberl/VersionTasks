@@ -8,15 +8,23 @@ namespace VersionTasks.Tests
     [TestFixture]
     public class GitVersionFileTest
     {
+        private static string _templatesDirectory;
+        private static string _repositoriesDirectory;
+        private static string _tempDirectory;
+
         [SetUp]
         public void SetUp()
         {
+            _templatesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Templates");
+            _repositoriesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Repositories");
+            _tempDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Temp", Guid.NewGuid().ToString());
+
             // extract the repositories in the 'Git.zip' file into the 'temp' folder
-            using (ZipFile zipFile = ZipFile.Read(Path.Combine(RepositoriesDirectory, "Git.zip")))
+            using (ZipFile zipFile = ZipFile.Read(Path.Combine(_repositoriesDirectory, "Git.zip")))
             {
                 foreach (ZipEntry zipEntry in zipFile)
                 {
-                    zipEntry.Extract(TempDirectory, ExtractExistingFileAction.OverwriteSilently);
+                    zipEntry.Extract(_tempDirectory, ExtractExistingFileAction.OverwriteSilently);
                 }
             }
         }
@@ -25,12 +33,7 @@ namespace VersionTasks.Tests
         public void TearDown()
         {
             // in combination with TortoiseGit "Directory.Delete()' throws an "System.UnauthorizedAccessException'
-            VersionInfoBase versionInfoBase = new GitVersionFile();
-            versionInfoBase.WorkingDirectory = TempDirectory;
-            versionInfoBase.ExecuteCommand("rm", "-rf *");
-
-            // delete the 'temp' folder
-            Directory.Delete(TempDirectory, true);
+            SafeDirectoryDelete(_tempDirectory);
         }
 
         [Test]
@@ -72,17 +75,13 @@ namespace VersionTasks.Tests
             Assert.AreEqual("false", ReadFirstLine("Git3DirtyBuild.txt"));
         }
 
-        private static readonly string TemplatesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Templates");
-        private static readonly string RepositoriesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Repositories");
-        private static readonly string TempDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data\\Temp");
-
         private static void Execute(string templateFile, string destinationFile, string workingDirectory)
         {
             GitVersionFile gitVersionFile = new GitVersionFile
             {
-                TemplateFile = Path.Combine(TemplatesDirectory, templateFile),
-                DestinationFile = Path.Combine(TempDirectory, destinationFile),
-                WorkingDirectory = Path.Combine(TempDirectory, workingDirectory)
+                TemplateFile = Path.Combine(_templatesDirectory, templateFile),
+                DestinationFile = Path.Combine(_tempDirectory, destinationFile),
+                WorkingDirectory = Path.Combine(_tempDirectory, workingDirectory)
             };
 
             gitVersionFile.Execute();
@@ -90,10 +89,32 @@ namespace VersionTasks.Tests
 
         private static string ReadFirstLine(string fileName)
         {
-            using (StreamReader streamReader = new StreamReader(Path.Combine(TempDirectory, fileName)))
+            using (StreamReader streamReader = new StreamReader(Path.Combine(_tempDirectory, fileName)))
             {
                 return streamReader.ReadLine();
             }
+        }
+
+        /// <see href="http://stackoverflow.com/a/8521573/135441" />
+        private static void SafeDirectoryDelete(string targetDir)
+        {
+            File.SetAttributes(targetDir, FileAttributes.Normal);
+
+            string[] files = Directory.GetFiles(targetDir);
+            string[] dirs = Directory.GetDirectories(targetDir);
+
+            foreach (string file in files)
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                SafeDirectoryDelete(dir);
+            }
+
+            Directory.Delete(targetDir, false);
         }
     }
 }
