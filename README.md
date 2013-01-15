@@ -84,9 +84,7 @@ All placeholders are delimited using dollar signs ($) and are replaced with the 
 
 ### Show me the codez
 
-If you want to see everything working together dig into this small C# console application:
-
-- [github.com/martinbuberl/VersionTasks.Sample][sample]
+If you want to see everything working together dig into this small [console application sample][sample].
 
 ## Installation
 
@@ -141,7 +139,7 @@ VersionTasks is released under the [MIT license][mit].
 [nuget]:        http://nuget.org
 [package]:      http://nuget.org/packages/VersionTasks
 [pmc]:          http://docs.nuget.org/docs/start-here/using-the-package-manager-console
-[sample]:       https://github.com/martinbuberl/VersionTasks.Sample
+[sample]:       https://github.com/martinbuberl/VersionTasks/tree/master/sample
 [twitter]:      https://twitter.com/martinbuberl
 [donate]:       https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2AGHGEL2X4VSQ
 [mit]:          https://github.com/martinbuberl/NUnitHelpers/blob/master/LICENSE
